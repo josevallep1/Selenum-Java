@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class TextBoxPage extends BaseTest {
+    @FindBy(xpath = "//span[contains(text(),'Text Box')]")
+    public WebElement textBoxOption;
+
     @FindBy(id = "userName")
     public WebElement nameText;
 
@@ -36,12 +39,16 @@ public class TextBoxPage extends BaseTest {
         PageFactory.initElements(driver, this);
     }
 
+    public void clickTextBoxOption() {
+        clickElement(textBoxOption);
+    }
+
     public void typeAllInfoAndSubmit(String name, String mail, String currentAddress, String permanentAddress) {
         typeField(nameText,name);
         typeField(userEmailText,mail);
         typeField(currentAddressText,currentAddress);
         typeField(permanentAddressText,permanentAddress);
-        submitButton.click();
+        clickElement(submitButton);
     }
 
     public boolean isOutputFrameDisplayed() {
@@ -54,5 +61,10 @@ public class TextBoxPage extends BaseTest {
 
     public String getInfoEmail(){
         return lb_mail.getText();
+    }
+
+    public void typeEmailAndSubmit(String mail) {
+        typeField(userEmailText,mail);
+        clickElement(submitButton);
     }
 }

@@ -17,7 +17,7 @@ public class BaseTest {
     public static void setup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://demoqa.com/text-box");
+        driver.get("https://demoqa.com");
     }
 
     @AfterMethod
@@ -32,5 +32,11 @@ public class BaseTest {
         jse.executeScript("arguments[0].scrollIntoView(true);", webElement);
         webElement.clear();
         webElement.sendKeys(text);
+    }
+
+    public static void clickElement(WebElement webElement){
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].scrollIntoView(true);", webElement);
+        webElement.click();
     }
 }
